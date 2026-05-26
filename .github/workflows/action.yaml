@@ -27,6 +27,10 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       # TODO: Run backend tests in the pipeline
+      - name : Run backend tests
+        env:
+          MY_SECRET_KEY : ${{ secrets.MY_SECRET_KEY }}
+        run: ./gradlew test
 
       # TODO: Run the Jacoco report in the pipeline (Jacoco already exists)
 
