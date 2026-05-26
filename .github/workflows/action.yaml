@@ -2,7 +2,11 @@ name: Lab 7
 #TODO The pipeline should be triggered only on push to a "test" branch
 on:
   push:
+    branches:
+      - test
   pull_request:
+    branches:
+      - test
 
 jobs:
   test:
