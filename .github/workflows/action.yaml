@@ -30,7 +30,7 @@ jobs:
       - name : Run backend tests
         env:
           MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
-        run: ./gradlew test
+        run: ./gradlew test -DMY_SECRET_KEY="${{ secrets.MY_SECRET_KEY }}"
 
       # TODO: Run the Jacoco report in the pipeline (Jacoco already exists)
       - name: Run jacoco reports
