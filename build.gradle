@@ -31,7 +31,7 @@ jacoco {
 tasks.named('test') {
 	useJUnitPlatform()
 	finalizedBy jacocoTestReport
-	environment(System.getenv())
+	systemProperty "MY_SECRET_KEY", System.getenv("MY_SECRET_KEY")
 }
 
 jacocoTestReport {
