@@ -24,20 +24,17 @@ jobs:
       - name: Grant execute permission for Gradle Wrapper
         run: chmod +x gradlew
 
+      # ON CHANGE ICI : 'assemble' compile le code MAIS ne lance pas les tests !
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew assemble
+
       # TODO: Run backend tests in the pipeline
-      - name : Run backend tests
+      # On ajoute --no-daemon pour forcer Gradle à lire les variables fraîches
+      - name: Run backend tests
         env:
           MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
-        run: ./gradlew test
+        run: ./gradlew test --no-daemon
 
       # TODO: Run the Jacoco report in the pipeline (Jacoco already exists)
       - name: Run jacoco reports
-        run : ./gradlew jacocoTestReport
-
-      # TODO: Set GitHub secrets and read them in the pipeline (for the environmentTest)
-#      - name: run tests with secret key
-#        env:
-#          MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
-#        run: ./gradlew test --test "Lab7Test"
+        run: ./gradlew jacocoTestReport
