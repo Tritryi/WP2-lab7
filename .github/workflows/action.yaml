@@ -34,6 +34,8 @@ jobs:
 
       # TODO: Run the Jacoco report in the pipeline (Jacoco already exists)
       - name: Run jacoco reports
+        env:
+          MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
         run : ./gradlew jacocoTestReport
 
       # TODO: Set GitHub secrets and read them in the pipeline (for the environmentTest)
